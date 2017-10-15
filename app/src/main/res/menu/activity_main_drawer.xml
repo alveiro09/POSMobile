@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/title_option_sesion">
+        <menu>
+            <item
+                android:id="@+id/nav_iniciarSesion"
+                android:title="@string/title_activity_iniciar_sesion" />
+            <item
+                android:id="@+id/nav_cerrarSesion"
+                android:title="@string/title_activity_cerrar_sesion" />
+
+        </menu>
+    </item>
+    <item android:title="@string/title_option_captura">
+        <menu>
+            <item
+                android:id="@+id/nav_compra"
+                android:title="@string/title_activity_compras" />
+            <item
+                android:id="@+id/nav_venta"
+                android:title="@string/title_activity_ventas" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/title_option_inventario">
+        <menu>
+            <item
+                android:id="@+id/nav_referencia"
+                android:title="@string/title_activity_referencias" />
+            <item
+                android:id="@+id/nav_crearReferencias"
+                android:title="@string/title_activity_crear_referencias" />
+        </menu>
+    </item>
+
+    <item android:title="@string/title_option_reportes">
+        <menu>
+            <item
+                android:id="@+id/nav_repReferencia"
+                android:title="@string/title_activity_reporte_referencias" />
+            <item
+                android:id="@+id/nav_repCompras"
+                android:title="@string/title_activity_reporte_compras" />
+            <item
+                android:id="@+id/nav_repVentas"
+                android:title="@string/title_activity_reporte_ventas" />
+        </menu>
+    </item>
+    <item android:title="@string/title_option_usuarios">
+        <menu>
+            <item
+                android:id="@+id/nav_Usuarios"
+                android:title="@string/title_activity_usuarios" />
+            <item
+                android:id="@+id/nav_crearUsuarios"
+                android:title="@string/title_activity_crear_usuarios" />
+        </menu>
+    </item>
+</menu>

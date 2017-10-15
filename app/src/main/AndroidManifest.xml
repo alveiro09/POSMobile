@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.posmobile">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Compras"
+            android:label="@string/title_activity_compras"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Ventas"
+            android:label="@string/title_activity_ventas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Referencias"
+            android:label="@string/title_activity_referencias"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CrearReferencias"
+            android:label="@string/title_activity_crear_referencias"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReporteCompras"
+            android:label="@string/title_activity_reporte_compras"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReporteVentas"
+            android:label="@string/title_activity_reporte_ventas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReporteReferencias"
+            android:label="@string/title_activity_reporte_referencias"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Usuarios"
+            android:label="@string/title_activity_usuarios"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CrearUsuarios"
+            android:label="@string/title_activity_crear_usuarios"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".IniciarSesion"
+            android:label="@string/title_activity_iniciar_sesion"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CerrarSesion"
+            android:label="@string/title_activity_cerrar_sesion"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AcercaDe"
+            android:label="@string/title_activity_acerca_de"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>

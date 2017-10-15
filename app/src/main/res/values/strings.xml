@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">POS Mobile</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_acercaDe">Acerca de... </string>
+    <string name="title_activity_compras">Compras</string>
+    <string name="title_activity_ventas">Ventas</string>
+    <string name="title_activity_referencias">Referencias</string>
+    <string name="title_activity_crear_referencias">Crear Referencias</string>
+    <string name="title_activity_reporte_compras">Reporte Compras</string>
+    <string name="title_activity_reporte_ventas">Reporte Ventas</string>
+    <string name="title_activity_reporte_referencias">Reporte Referencias</string>
+    <string name="title_activity_usuarios">Usuarios</string>
+    <string name="title_activity_crear_usuarios">Crear Usuarios</string>
+    <string name="title_option_sesion">Sesión</string>
+    <string name="title_option_captura">Captura</string>
+    <string name="title_option_inventario">Inventario</string>
+    <string name="title_option_reportes">Reportes</string>
+    <string name="title_option_usuarios">Usuarios</string>
+    <string name="title_activity_iniciar_sesion">Iniciar Sesion</string>
+    <string name="title_activity_cerrar_sesion">Cerrar Sesion</string>
+    <string name="title_activity_acerca_de">Acerca De..</string>
+    <string name="InfoAcercaDe1">Aplicación desarrollado por Cristian Mejia y Santiago Serna.</string>
+    <string name="InfoAcercaDe2">Esta aplicación tiene objetivo de demostrar en la asignatura Proyecto integrador los conocimientos adquiridos durante la carrera.</string>
+
+</resources>
