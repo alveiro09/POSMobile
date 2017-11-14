@@ -42,19 +42,6 @@ public class CrearUsuarios extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                edtNumeroIdentificacion.setText("");
-                edtNombreUsuario.setText("");
-                edtPrimerNombre.setText("");
-                edtSegundoNombre.setText("");
-                edtPrimerApellido.setText("");
-                edtSegundoApellido.setText("");
-                edtContrasena.setText("");
-            }
-        });
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
                 Usuario usuario = new Usuario();
                 usuario.setNombreUsuario(edtNombreUsuario.getText().toString());
                 usuario.setNumeroIdentificacion(edtNombreUsuario.getText().toString());
@@ -63,7 +50,19 @@ public class CrearUsuarios extends AppCompatActivity {
                 usuario.setPrimerApellido(edtNombreUsuario.getText().toString());
                 usuario.setSegundoApellido(edtNombreUsuario.getText().toString());
                 usuario.setContrasena(edtNombreUsuario.getText().toString());
+            }
+        });
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                edtNumeroIdentificacion.setText("");
+                edtNombreUsuario.setText("");
+                edtPrimerNombre.setText("");
+                edtSegundoNombre.setText("");
+                edtPrimerApellido.setText("");
+                edtSegundoApellido.setText("");
+                edtContrasena.setText("");
                 // Toast.makeText(this, usuario.getPrimerNombre(),Toast.LENGTH_LONG);
                 //
             }
