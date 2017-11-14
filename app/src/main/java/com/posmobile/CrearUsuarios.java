@@ -65,6 +65,7 @@ public class CrearUsuarios extends AppCompatActivity {
                 usuario.setContrasena(edtNombreUsuario.getText().toString());
 
                 // Toast.makeText(this, usuario.getPrimerNombre(),Toast.LENGTH_LONG);
+                //
             }
         });
     }
