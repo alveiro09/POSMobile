@@ -52,6 +52,7 @@ public class CrearUsuarios extends AppCompatActivity {
                 usuario.setContrasena(edtNombreUsuario.getText().toString());
             }
         });
+
         btnCancelar.setOnClickListener(new View.OnClickListener() {
 
             @Override
