@@ -22,7 +22,13 @@
     <string name="title_activity_iniciar_sesion">Iniciar Sesion</string>
     <string name="title_activity_cerrar_sesion">Cerrar Sesion</string>
     <string name="title_activity_acerca_de">Acerca De..</string>
-    <string name="InfoAcercaDe1">Aplicación desarrollado por Cristian Mejia y Santiago Serna.</string>
-    <string name="InfoAcercaDe2">Esta aplicación tiene objetivo de demostrar en la asignatura Proyecto integrador los conocimientos adquiridos durante la carrera.</string>
-
+    <string name="InfoAcercaDe1">Aplicación desarrollada por Cristian Mejia y Santiago Serna.</string>
+    <string name="InfoAcercaDe2">Esta aplicación tiene por objetivo evidenciar en la asignatura Proyecto Integrador los conocimientos adquiridos durante la carrera.</string>
+    <string name="numeroDeIdentificaci_n">Número de Identificación</string>
+    <string name="nombreDeUsuario">Nombre de usario</string>
+    <string name="primerNombre">Primer Nombre</string>
+    <string name="segundoNombre">Segundo Nombre</string>
+    <string name="primerApellido">Primer Apellido</string>
+    <string name="segundoApellido">Segudo Apellido</string>
+    <string name="contrasena">Contrasena</string>
 </resources>
