@@ -7,5 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="SizeTitle">20dp</dimen>
     <dimen name="StdMargin">24dp</dimen>
+    <dimen name="StdMaxMargin">36dp</dimen>
     <dimen name="FieldsMargin">16dp</dimen>
 </resources>
