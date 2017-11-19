@@ -29,6 +29,18 @@
     <string name="primerNombre">Primer Nombre</string>
     <string name="segundoNombre">Segundo Nombre</string>
     <string name="primerApellido">Primer Apellido</string>
-    <string name="segundoApellido">Segudo Apellido</string>
+    <string name="segundoApellido">Segundo Apellido</string>
     <string name="contrasena">Contrasena</string>
+    <string name="codigoReferencia">Código referencia</string>
+    <string name="nombreReferencia">Nombre referencia</string>
+    <string name="descripcionReferencia">Descripción referencia</string>
+    <string name="precioCompra">Precio compra</string>
+    <string name="precioVenta">Precio venta</string>
+    <string name="cantidadDisponible">Cantidad disponible</string>
+    <string name="idTransaccion">Id Transacción</string>
+    <string name="FechaTransaccion">Fecha Transacción</string>
+    <string name="Bruto">Bruto</string>
+    <string name="Neto">Neto</string>
+    <string name="Descuento">Descuento</string>
+    <string name="Usuario">Usuario</string>
 </resources>

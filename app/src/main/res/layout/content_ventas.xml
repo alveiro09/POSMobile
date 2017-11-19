@@ -8,13 +8,19 @@
     tools:context="com.posmobile.Ventas"
     tools:showIn="@layout/activity_ventas">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_activity_ventas"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lblTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/FieldsMargin"
+            android:text="@string/title_activity_ventas" />
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

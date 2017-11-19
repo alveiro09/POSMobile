@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/StdMargin"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/LblidTransaccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="cursive"
+        android:text="@string/idTransaccion"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/fab_margin" />
+
+    <TextView
+        android:id="@+id/LblidTransaccionData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblidTransaccion"
+        android:text="@string/idTransaccion"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/LblFechaTransaccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LblidTransaccionData"
+        android:fontFamily="cursive"
+        android:text="@string/FechaTransaccion"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/fab_margin" />
+
+    <TextView
+        android:id="@+id/LblFechaTransaccionData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LblFechaTransaccion"
+        android:text="@string/FechaTransaccion"
+        android:textColor="@color/colorAccent" />
+
+
+    <TextView
+        android:id="@+id/LblBruto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblFechaTransaccionData"
+        android:fontFamily="cursive"
+        android:text="@string/Bruto"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/fab_margin" />
+
+    <TextView
+        android:id="@+id/LblBrutoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblBruto"
+        android:text="@string/Bruto"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/LblNeto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblBrutoData"
+        android:fontFamily="cursive"
+        android:text="@string/Neto"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/fab_margin" />
+
+    <TextView
+        android:id="@+id/LblNetoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblNeto"
+        android:text="@string/Neto"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/LblDescuento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblNetoData"
+        android:fontFamily="cursive"
+        android:text="@string/Descuento"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/fab_margin" />
+
+    <TextView
+        android:id="@+id/LblDescuentoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblDescuento"
+        android:text="@string/Descuento"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/LblUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblDescuentoData"
+        android:fontFamily="cursive"
+        android:text="@string/Usuario"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/fab_margin" />
+
+    <TextView
+        android:id="@+id/LblUsuarioData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LblUsuario"
+        android:text="@string/Usuario"
+        android:textColor="@color/colorPrimary" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorPrimaryDark" />
+
+</RelativeLayout>

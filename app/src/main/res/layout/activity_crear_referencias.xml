@@ -1,27 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.posmobile.CrearReferencias">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/StdMargin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.posmobile.CrearReferencias"
+    tools:showIn="@layout/activity_crear_referencias">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_margin="@dimen/StdMargin"
+        android:layout_marginTop="@dimen/StdMaxMargin"
+        android:text="@string/title_activity_crear_referencias"
+        android:textAlignment="center"
+        android:textSize="@dimen/SizeTitle" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/StdMaxMargin">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtCodigoReferencia"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/StdMaxMargin">
 
-    </android.support.design.widget.AppBarLayout>
+            <EditText
+                android:id="@+id/edtCodigoReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/codigoReferencia" />
 
-    <include layout="@layout/content_crear_referencias" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtNombreReferencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCodigoReferencia">
+
+            <EditText
+                android:id="@+id/edtNombreReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nombreReferencia" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtDescripcionReferencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNombreReferencia">
+
+            <EditText
+                android:id="@+id/edtDescripcionReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/descripcionReferencia" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtPrecioCompra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtDescripcionReferencia">
+
+            <EditText
+                android:id="@+id/edtPrecioCompra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/precioCompra" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtPrecioVenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPrecioCompra">
+
+            <EditText
+                android:id="@+id/edtPrecioVenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/precioVenta" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/bntGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/StdMargin"
+                android:text="Guardar" />
+
+            <Button
+                android:id="@+id/bntCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/StdMargin"
+                android:text="Cancelar" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>

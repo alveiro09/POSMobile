@@ -1,10 +1,13 @@
 package com.posmobile.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by personal on 13/11/2017.
  */
 
-public class Usuario {
+@SuppressWarnings("serial")
+public class Usuario implements Serializable {
     private String numeroIdentificacion;
     private String primerNombre;
     private String segundoNombre;
@@ -15,6 +18,12 @@ public class Usuario {
 
     public Usuario(){
 
+    }
+
+    public Usuario(String nombreUsuario, String primerNombre, String primerApellido){
+        this.setNombreUsuario(nombreUsuario);
+        this.setPrimerApellido(primerNombre);
+        this.setPrimerApellido(primerApellido);
     }
 
     public String getNumeroIdentificacion() {
@@ -72,4 +81,6 @@ public class Usuario {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+
 }
