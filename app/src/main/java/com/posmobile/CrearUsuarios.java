@@ -12,9 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -45,6 +47,7 @@ public class CrearUsuarios extends AppCompatActivity {
         setContentView(R.layout.activity_crear_usuarios);
 
         queue = Volley.newRequestQueue(this);
+
         actualizacion = false;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -120,8 +123,19 @@ public class CrearUsuarios extends AppCompatActivity {
     private void InsertarActualizarUsuario(final Usuario usuario, boolean insertar) {
 
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
-                url, null,
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("nombreDeUsuario", usuario.getNombreUsuario());
+        params.put("numeroIdentificacion", usuario.getNumeroIdentificacion());
+        params.put("primerNombre", usuario.getPrimerNombre());
+        params.put("segundoNombre", usuario.getSegundoNombre());
+        params.put("primerApellido", usuario.getPrimerApellido());
+        params.put("segundoApellido", usuario.getSegundoApellido());
+        params.put("contrasena", usuario.getContrasena());
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -136,32 +150,88 @@ public class CrearUsuarios extends AppCompatActivity {
             }
         }) {
 
+            /**
+             * Passing some request headers
+             * */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> paramsH = new HashMap<>();
-                paramsH.put("Content-Type", "application/json");
-                //..add other headers
-                return paramsH;
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+
+
+
+        };
+        jsonObjReq.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
             }
 
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("nombreDeUsuario", usuario.getNombreUsuario());
-                params.put("numeroIdentificacion", usuario.getNumeroIdentificacion());
-                params.put("primerNombre", usuario.getPrimerNombre());
-                params.put("segundoNombre", usuario.getSegundoNombre());
-                params.put("primerApellido", usuario.getPrimerApellido());
-                params.put("segundoApellido", usuario.getSegundoApellido());
-                params.put("contrasena", usuario.getContrasena());
-
-                return params;
+            public int getCurrentRetryCount() {
+                return 50000;
             }
 
-        };
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+
+        // Adding request to request queue
         queue.add(jsonObjReq);
+
+        // Cancelling request
+    /* if (queue!= null) {
+    queue.cancelAll(TAG);
+    } */
+
     }
+
+
+//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
+//                url, null,
+//                new Response.Listener<JSONObject>() {
+//
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
+//                    }
+//                }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(CrearUsuarios.this, error.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        }) {
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> paramsH = new HashMap<>();
+//                paramsH.put("Content-Type", "application/json");
+//                //..add other headers
+//                return paramsH;
+//            }
+//
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("nombreDeUsuario", usuario.getNombreUsuario());
+//                params.put("numeroIdentificacion", usuario.getNumeroIdentificacion());
+//                params.put("primerNombre", usuario.getPrimerNombre());
+//                params.put("segundoNombre", usuario.getSegundoNombre());
+//                params.put("primerApellido", usuario.getPrimerApellido());
+//                params.put("segundoApellido", usuario.getSegundoApellido());
+//                params.put("contrasena", usuario.getContrasena());
+//
+//                return params;
+//            }
+//
+//        };
+//        queue.add(jsonObjReq);
+//}
 }
-
-
-
