@@ -11,20 +11,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.posmobile.modelo.Usuario;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CrearUsuarios extends AppCompatActivity {
     //TODO cambiar por UTL del WebApi
-    private static final String url = "http://192.168.1.14:8080/tortas/consulta.php";
+    private static final String url = "http://posmobileapi.azurewebsites.net/api/Usuario";
     RequestQueue queue;
     Usuario usuarioEdit;
     EditText edtNombreUsuario, edtNumeroIdentificacion, edtPrimerNombre, edtSegundoNombre;
@@ -62,16 +67,17 @@ public class CrearUsuarios extends AppCompatActivity {
             public void onClick(View v) {
                 Usuario usuario = new Usuario();
                 usuario.setNombreUsuario(edtNombreUsuario.getText().toString());
-                usuario.setNumeroIdentificacion(edtNombreUsuario.getText().toString());
-                usuario.setPrimerApellido(edtNombreUsuario.getText().toString());
-                usuario.setSegundoNombre(edtNombreUsuario.getText().toString());
-                usuario.setPrimerApellido(edtNombreUsuario.getText().toString());
-                usuario.setSegundoApellido(edtNombreUsuario.getText().toString());
+                usuario.setNumeroIdentificacion(edtNumeroIdentificacion.getText().toString());
+                usuario.setPrimerApellido(edtPrimerApellido.getText().toString());
+                usuario.setSegundoApellido(edtSegundoApellido.getText().toString());
+                usuario.setPrimerNombre(edtPrimerNombre.getText().toString());
+                usuario.setSegundoNombre(edtSegundoNombre.getText().toString());
                 usuario.setContrasena(edtNombreUsuario.getText().toString());
+
 
                 InsertarActualizarUsuario(usuario, !actualizacion);
 
-                Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
+                //     Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -91,9 +97,7 @@ public class CrearUsuarios extends AppCompatActivity {
 
         try {
             usuarioEdit = (Usuario) getIntent().getExtras().getSerializable("usuarioEdit");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
 
@@ -114,38 +118,50 @@ public class CrearUsuarios extends AppCompatActivity {
     }
 
     private void InsertarActualizarUsuario(final Usuario usuario, boolean insertar) {
-        StringRequest postRequest = new StringRequest(insertar ? Request.Method.POST : Request.Method.PUT, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //response;
-                        Log.d("Response", response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
 
-                        Log.d("Error.Response", error.getMessage());
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
+                url, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
                     }
-                }
-        ) {
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CrearUsuarios.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> paramsH = new HashMap<>();
+                paramsH.put("Content-Type", "application/json");
+                //..add other headers
+                return paramsH;
+            }
+
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("NombreUsuario", usuario.getNombreUsuario());
-                params.put("NumeroIdentificacion", usuario.getNumeroIdentificacion());
-                params.put("PrimerNombre", usuario.getPrimerNombre());
-                params.put("SegundoNombre", usuario.getSegundoNombre());
-                params.put("PrimerApellido", usuario.getPrimerApellido());
-                params.put("SegundoApellido", usuario.getSegundoApellido());
-                params.put("Contrasena", usuario.getContrasena());
+                params.put("nombreDeUsuario", usuario.getNombreUsuario());
+                params.put("numeroIdentificacion", usuario.getNumeroIdentificacion());
+                params.put("primerNombre", usuario.getPrimerNombre());
+                params.put("segundoNombre", usuario.getSegundoNombre());
+                params.put("primerApellido", usuario.getPrimerApellido());
+                params.put("segundoApellido", usuario.getSegundoApellido());
+                params.put("contrasena", usuario.getContrasena());
 
                 return params;
             }
+
         };
-        queue.add(postRequest);
+        queue.add(jsonObjReq);
     }
 }
+
+
 
