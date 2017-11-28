@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class Usuarios extends AppCompatActivity {
 
-    private static final String url = "http://posmobileapi.azurewebsites.net/api/Usuario";
+    private static final String url = "http://poswebapi.azurewebsites.net/api/Usuario";
     private RecyclerView recyclerView;
     private UsuariosAdapter adapter;
     private ArrayList<Usuario> usuarioServicio = new ArrayList<>();
@@ -74,9 +74,9 @@ public class Usuarios extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject objeto = response.getJSONObject(i);
-                        String nombreUsuario = objeto.getString("nombreDeUsuario");
-                        String primerNombre = objeto.getString("primerNombre");
-                        String primerApellido = objeto.getString("primerApellido");
+                        String nombreUsuario = objeto.getString("NombreDeUsuario");
+                        String primerNombre = objeto.getString("PrimerNombre");
+                        String primerApellido = objeto.getString("PrimerApellido");
 
                         usuarioServicio.add(new Usuario(nombreUsuario, primerNombre, primerApellido));
                     } catch (JSONException e) {

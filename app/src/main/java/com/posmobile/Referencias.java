@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class Referencias extends AppCompatActivity {
 
-    private static final String url = "http://192.168.1.14:8080/tortas/consulta.php";
+    private static final String url = "http://poswebapi.azurewebsites.net/api/Producto";
     private RecyclerView recyclerView;
     private ReferenciasAdapter adapter;
     private ArrayList<Referencia> Referenciaservicio = new ArrayList<>();
@@ -74,7 +74,7 @@ public class Referencias extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject objeto = response.getJSONObject(i);
-                        String id = objeto.getString("Id");
+                        String id = objeto.getString("IdProducto");
                         String nombre = objeto.getString("Nombre");
                         String descripcion = objeto.getString("Descripcion");
                         double precioCompra = objeto.getDouble("PrecioCompra");

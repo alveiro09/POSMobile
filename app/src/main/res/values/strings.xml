@@ -43,4 +43,10 @@
     <string name="Neto">Neto</string>
     <string name="Descuento">Descuento</string>
     <string name="Usuario">Usuario</string>
+    <string name="IniciarSesion">Iniciar Sesión</string>
+    <string name="Nit">Nit</string>
+    <string name="Cedula">Cedula</string>
+    <string name="NombreAcreedor">Nombre Acreedor</string>
+    <string name="NombreCliente">Nombre Cliente</string>
+    <string name="Guardar">Guardar</string>
 </resources>

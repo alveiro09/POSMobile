@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class CrearUsuarios extends AppCompatActivity {
     //TODO cambiar por UTL del WebApi
-    private static final String url = "http://posmobileapi.azurewebsites.net/api/Usuario";
+    private static final String url = "http://poswebapi.azurewebsites.net/api/Usuario";
     RequestQueue queue;
     Usuario usuarioEdit;
     EditText edtNombreUsuario, edtNumeroIdentificacion, edtPrimerNombre, edtSegundoNombre;
@@ -125,16 +125,16 @@ public class CrearUsuarios extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<String, String>();
 
-        params.put("nombreDeUsuario", usuario.getNombreUsuario());
-        params.put("numeroIdentificacion", usuario.getNumeroIdentificacion());
-        params.put("primerNombre", usuario.getPrimerNombre());
-        params.put("segundoNombre", usuario.getSegundoNombre());
-        params.put("primerApellido", usuario.getPrimerApellido());
-        params.put("segundoApellido", usuario.getSegundoApellido());
-        params.put("contrasena", usuario.getContrasena());
+        params.put("NombreDeUsuario", usuario.getNombreUsuario());
+        params.put("NumeroIdentificacion", usuario.getNumeroIdentificacion());
+        params.put("PrimerNombre", usuario.getPrimerNombre());
+        params.put("SegundoNombre", usuario.getSegundoNombre());
+        params.put("PrimerApellido", usuario.getPrimerApellido());
+        params.put("SegundoApellido", usuario.getSegundoApellido());
+        params.put("Contrasena", usuario.getContrasena());
 
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
                 url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
@@ -146,7 +146,10 @@ public class CrearUsuarios extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CrearUsuarios.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
+                    Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(CrearUsuarios.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 
@@ -159,8 +162,6 @@ public class CrearUsuarios extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
-
-
 
 
         };
@@ -181,57 +182,8 @@ public class CrearUsuarios extends AppCompatActivity {
             }
         });
 
-
-        // Adding request to request queue
         queue.add(jsonObjReq);
-
-        // Cancelling request
-    /* if (queue!= null) {
-    queue.cancelAll(TAG);
-    } */
 
     }
 
-
-//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
-//                url, null,
-//                new Response.Listener<JSONObject>() {
-//
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(CrearUsuarios.this, error.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        }) {
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> paramsH = new HashMap<>();
-//                paramsH.put("Content-Type", "application/json");
-//                //..add other headers
-//                return paramsH;
-//            }
-//
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("nombreDeUsuario", usuario.getNombreUsuario());
-//                params.put("numeroIdentificacion", usuario.getNumeroIdentificacion());
-//                params.put("primerNombre", usuario.getPrimerNombre());
-//                params.put("segundoNombre", usuario.getSegundoNombre());
-//                params.put("primerApellido", usuario.getPrimerApellido());
-//                params.put("segundoApellido", usuario.getSegundoApellido());
-//                params.put("contrasena", usuario.getContrasena());
-//
-//                return params;
-//            }
-//
-//        };
-//        queue.add(jsonObjReq);
-//}
 }
