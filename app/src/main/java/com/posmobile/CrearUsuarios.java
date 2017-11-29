@@ -76,25 +76,14 @@ public class CrearUsuarios extends AppCompatActivity {
                 usuario.setPrimerNombre(edtPrimerNombre.getText().toString());
                 usuario.setSegundoNombre(edtSegundoNombre.getText().toString());
                 usuario.setContrasena(edtNombreUsuario.getText().toString());
-
-
                 InsertarActualizarUsuario(usuario, !actualizacion);
-
-                //     Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
-
             }
         });
         btnCancelar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                edtNumeroIdentificacion.setText("");
-                edtNombreUsuario.setText("");
-                edtPrimerNombre.setText("");
-                edtSegundoNombre.setText("");
-                edtPrimerApellido.setText("");
-                edtSegundoApellido.setText("");
-                edtContrasena.setText("");
+                limpiar();
             }
         });
 
@@ -108,6 +97,16 @@ public class CrearUsuarios extends AppCompatActivity {
             LlenarUsuarioEdit(usuarioEdit);
             actualizacion = true;
         }
+    }
+
+    private void limpiar() {
+        edtNumeroIdentificacion.setText("");
+        edtNombreUsuario.setText("");
+        edtPrimerNombre.setText("");
+        edtSegundoNombre.setText("");
+        edtPrimerApellido.setText("");
+        edtSegundoApellido.setText("");
+        edtContrasena.setText("");
     }
 
     private void LlenarUsuarioEdit(Usuario usuarioEdit) {
@@ -141,29 +140,25 @@ public class CrearUsuarios extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
+                        limpiar();
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
+                if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject")) {
                     Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
-                else
+                    limpiar();
+                } else
                     Toast.makeText(CrearUsuarios.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
-
-            /**
-             * Passing some request headers
-             * */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
-
-
         };
         jsonObjReq.setRetryPolicy(new RetryPolicy() {
             @Override
@@ -181,9 +176,6 @@ public class CrearUsuarios extends AppCompatActivity {
 
             }
         });
-
         queue.add(jsonObjReq);
-
     }
-
 }
