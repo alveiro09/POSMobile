@@ -14,24 +14,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.posmobile.modelo.Usuario;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    final MyApplication application = (MyApplication) getApplication();
+    MyApplication application;
+    TextView user, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        application = (MyApplication) getApplication();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        /*
+        user = (TextView) findViewById(R.id.user);
+        userName = (TextView) findViewById(R.id.userName);
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,6 +63,13 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+/*
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+       // actualizarUsuarioActual();
+        return super.onMenuOpened(featureId, menu);
+    }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -69,49 +81,52 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-//TODO poner validacion de usuario
-     //   if (application.getUsuarioActual() != null) {
-            switch (item.getItemId()) {
-                case R.id.nav_iniciarSesion:
-                    IniciarActividad(IniciarSesion.class);
-                    break;
-                case R.id.nav_cerrarSesion:
-                    IniciarActividad(CerrarSesion.class);
-                    break;
-                case R.id.nav_compra:
-                    IniciarActividad(Compras.class);
-                    break;
-                case R.id.nav_venta:
-                    IniciarActividad(Ventas.class);
-                    break;
-                case R.id.nav_referencia:
-                    IniciarActividad(Referencias.class);
-                    break;
-                case R.id.nav_crearReferencias:
-                    IniciarActividad(CrearReferencias.class);
-                    break;
-                case R.id.nav_repReferencia:
-                    IniciarActividad(ReporteReferencias.class);
-                    break;
-                case R.id.nav_repCompras:
-                    IniciarActividad(ReporteCompras.class);
-                    break;
-                case R.id.nav_repVentas:
-                    IniciarActividad(ReporteVentas.class);
-                    break;
-                case R.id.nav_Usuarios:
-                    IniciarActividad(Usuarios.class);
-                    break;
-                case R.id.nav_crearUsuarios:
-                    IniciarActividad(CrearUsuarios.class);
-                    break;
+        if (item.getItemId() == R.id.nav_iniciarSesion)
+            IniciarActividad(IniciarSesion.class);
+        else {
+            if (application == null)
+                application = (MyApplication) getApplication();
+            if ((application != null) && (application.getUsuarioActual() != null)) {
+                switch (item.getItemId()) {
+                    case R.id.nav_cerrarSesion:
+                        IniciarActividad(CerrarSesion.class);
+                        break;
+                    case R.id.nav_compra:
+                        IniciarActividad(Compras.class);
+                        break;
+                    case R.id.nav_venta:
+                        IniciarActividad(Ventas.class);
+                        break;
+                    case R.id.nav_referencia:
+                        IniciarActividad(Referencias.class);
+                        break;
+                    case R.id.nav_crearReferencias:
+                        IniciarActividad(CrearReferencias.class);
+                        break;
+                    case R.id.nav_repReferencia:
+                        IniciarActividad(ReporteReferencias.class);
+                        break;
+                    case R.id.nav_repCompras:
+                        IniciarActividad(ReporteCompras.class);
+                        break;
+                    case R.id.nav_repVentas:
+                        IniciarActividad(ReporteVentas.class);
+                        break;
+                    case R.id.nav_Usuarios:
+                        IniciarActividad(Usuarios.class);
+                        break;
+                    case R.id.nav_crearUsuarios:
+                        IniciarActividad(CrearUsuarios.class);
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
+            } else {
+                Toast.makeText(MainActivity.this, "Por favor inicie sesión para acceder a esta opción", Toast.LENGTH_LONG).show();
             }
-//        } else {
-//            Toast.makeText(MainActivity.this, "Por favor inicie sesión para acceder a esta opción", Toast.LENGTH_LONG).show();
-//        }
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -121,6 +136,12 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, actividad);
         startActivity(intent);
     }
-
-
+    private void actualizarUsuarioActual() {
+        if (application == null)
+            application = (MyApplication) getApplication();
+        if ((application != null) && (user!=null)) {
+            user.setText(application.getUsuarioActual().getNombreUsuario());
+            userName.setText(application.getUsuarioActual().getNombreUsuario());
+        }
+    }
 }

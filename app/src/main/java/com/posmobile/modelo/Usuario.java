@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Usuario implements Serializable {
+    private String id;
     private String numeroIdentificacion;
     private String primerNombre;
     private String segundoNombre;
@@ -20,10 +21,16 @@ public class Usuario implements Serializable {
 
     }
 
-    public Usuario(String nombreUsuario, String primerNombre, String primerApellido){
-        this.setNombreUsuario(nombreUsuario);
-        this.setPrimerApellido(primerNombre);
+    public Usuario(String Id, String numeroIdentificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+                   String nombreUsuario,String contrasena){
+        this.setId(Id);
+        this.setNumeroIdentificacion(numeroIdentificacion);
+        this.setPrimerNombre(primerNombre);
+        this.setSegundoNombre(segundoNombre);
         this.setPrimerApellido(primerApellido);
+        this.setSegundoApellido(segundoApellido);
+        this.setNombreUsuario(nombreUsuario);
+        this.setContrasena(contrasena);
     }
 
     public String getNumeroIdentificacion() {
@@ -83,4 +90,11 @@ public class Usuario implements Serializable {
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

@@ -1,5 +1,6 @@
 package com.posmobile;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,8 @@ public class CrearReferencias extends AppCompatActivity {
     Toolbar toolbar;
     Referencia referenciaEdit;
 
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,7 @@ public class CrearReferencias extends AppCompatActivity {
 
 
                 InsertarActualizarReferencia(referencia, !actualizacion);
-              //  Toast.makeText(CrearReferencias.this, "Referencia Creada", Toast.LENGTH_LONG).show();
+                //  Toast.makeText(CrearReferencias.this, "Referencia Creada", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -114,7 +117,9 @@ public class CrearReferencias extends AppCompatActivity {
     }
 
     private void InsertarActualizarReferencia(final Referencia referencia, boolean insertar) {
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Guardando información...");
+        progressDialog.show();
         Map<String, String> params = new HashMap<String, String>();
 
         params.put("idProducto", referencia.getId());
@@ -132,12 +137,14 @@ public class CrearReferencias extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        progressDialog.dismiss();
                         Toast.makeText(CrearReferencias.this, "Referencia Creada", Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
                     Toast.makeText(CrearReferencias.this, "Referencia Creada", Toast.LENGTH_LONG).show();
                 else

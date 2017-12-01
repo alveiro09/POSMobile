@@ -62,6 +62,7 @@ public class Usuarios extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Cargando datos...");
+        progressDialog.show();
         recyclerView = (RecyclerView) findViewById(R.id.listaUsuarios);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -74,21 +75,30 @@ public class Usuarios extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject objeto = response.getJSONObject(i);
-                        String nombreUsuario = objeto.getString("NombreDeUsuario");
-                        String primerNombre = objeto.getString("PrimerNombre");
-                        String primerApellido = objeto.getString("PrimerApellido");
 
-                        usuarioServicio.add(new Usuario(nombreUsuario, primerNombre, primerApellido));
+                        String Id = objeto.getString("Id");
+                        String NumeroIdentificacion = objeto.getString("NumeroIdentificacion");
+                        String PrimerNombre = objeto.getString("PrimerNombre");
+                        String SegundoNombre = objeto.getString("SegundoNombre");
+                        String PrimerApellido = objeto.getString("PrimerApellido");
+                        String SegundoApellido = objeto.getString("SegundoApellido");
+                        String Contrasena = objeto.getString("Contrasena");
+                        String NombreDeUsuario = objeto.getString("NombreDeUsuario");
+
+                        usuarioServicio.add(new Usuario(Id, NumeroIdentificacion, PrimerNombre, SegundoNombre,
+                                PrimerApellido, SegundoApellido, NombreDeUsuario, Contrasena));
                     } catch (JSONException e) {
+                        progressDialog.dismiss();
                         Toast.makeText(Usuarios.this, "" + e, Toast.LENGTH_LONG).show();
                     }
                 }
                 adapter.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progressDialog.dismiss();
             }
         });
 

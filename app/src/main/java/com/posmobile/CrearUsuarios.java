@@ -1,5 +1,6 @@
 package com.posmobile;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -40,7 +41,7 @@ public class CrearUsuarios extends AppCompatActivity {
     Usuario usuario;
     Toolbar toolbar;
     Boolean actualizacion;
-
+   ProgressDialog  progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +122,9 @@ public class CrearUsuarios extends AppCompatActivity {
 
     private void InsertarActualizarUsuario(final Usuario usuario, boolean insertar) {
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Guardando información...");
+        progressDialog.show();
 
         Map<String, String> params = new HashMap<String, String>();
 
@@ -146,6 +150,7 @@ public class CrearUsuarios extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject")) {
                     Toast.makeText(CrearUsuarios.this, "Usuario Creado", Toast.LENGTH_LONG).show();
                     limpiar();

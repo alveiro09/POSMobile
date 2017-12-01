@@ -62,6 +62,7 @@ public class Referencias extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Cargando datos...");
+        progressDialog.show();
         recyclerView = (RecyclerView) findViewById(R.id.listaReferencias);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -83,15 +84,17 @@ public class Referencias extends AppCompatActivity {
 
                         Referenciaservicio.add(new Referencia(id, nombre, descripcion, precioCompra, precioVenta, cantidadDisponible));
                     } catch (JSONException e) {
+                        progressDialog.dismiss();
                         Toast.makeText(Referencias.this, "" + e, Toast.LENGTH_LONG).show();
                     }
                 }
                 adapter.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progressDialog.dismiss();
             }
         });
 
