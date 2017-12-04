@@ -71,7 +71,7 @@ public class Referencias extends AppCompatActivity {
             public void onItemSelected(Referencia referenciaFrag) {
 
             }
-        },false);
+        }, false, false);
         recyclerView.setAdapter(adapter);
 
         JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {

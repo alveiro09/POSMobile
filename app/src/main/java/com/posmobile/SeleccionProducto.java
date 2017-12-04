@@ -28,7 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SeleccionProducto extends Fragment {
+public class SeleccionProducto extends Fragment implements IData{
 
     private static final String url = "http://poswebapi.azurewebsites.net/api/Producto";
     private RecyclerView recyclerView;
@@ -67,7 +67,7 @@ public class SeleccionProducto extends Fragment {
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.listaReferencias);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ReferenciasAdapter(getContext(), Referenciaservicio, data, true);
+        adapter = new ReferenciasAdapter(getContext(), Referenciaservicio, this, true, false);
         recyclerView.setAdapter(adapter);
 
         JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
@@ -103,18 +103,33 @@ public class SeleccionProducto extends Fragment {
 
     }
 
-    IData data = new IData() {
-        @Override
-        public void onItemSelected(Referencia referenciaFrag) {
-            Compras compras = new Compras();
+//    IData data = new IData() {
+//        @Override
+//        public void onItemSelected(Referencia referenciaFrag) {
+//            Compras compras = new Compras();
+//
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("referenciaAdd", referenciaFrag);
+//            compras.setArguments(bundle);
+//
+//            FragmentManager manager = getFragmentManager();
+//            FragmentTransaction transaction = manager.beginTransaction();
+//            //transaction.commit();
+//            //transaction.replace(R.id.viewCompras, compras).commit();
+//            transaction.show(compras).commit();
+//        }
+//    };
 
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("referenciaAdd", referenciaFrag);
-            compras.setArguments(bundle);
+    @Override
+    public void onItemSelected(Referencia referenciaFrag) {
+        Compras compras = new Compras();
+        compras.referenciasAComprar.add(referenciaFrag);
+        Toast.makeText(getContext(), "Referencia Agregada" , Toast.LENGTH_LONG).show();
+        //compras.mostrarInfo();
 
-            FragmentManager manager = getFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.bntMostrar, compras).commit();
-        }
-    };
+
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("referenciaAdd", referenciaFrag);
+//        compras.setArguments(bundle);
+    }
 }

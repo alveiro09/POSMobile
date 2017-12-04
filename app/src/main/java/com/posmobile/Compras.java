@@ -36,13 +36,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Compras extends Fragment {
-    private final ArrayList<Referencia> referenciasAComprar = new ArrayList<>();
-    Referencia referencia;
+    static ArrayList<Referencia> referenciasAComprar = new ArrayList<>() ;
 
     ProgressDialog progressDialog;
     private RecyclerView recyclerView;
     private ReferenciasAdapter adapter;
-
     private Button btnGuardar, btnMostrar;
 
     @Nullable
@@ -58,24 +56,25 @@ public class Compras extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        try {
-//            referencia = (Referencia) getArguments().getSerializable("referenciaAdd");
-//
-//            referenciasAComprar.add(referencia);
-//            //     mostrarInfo();
-//        } catch (Exception ex) {
-//
-//        }
-////        referenciasAComprar.add(new Referencia("12", "Prueba", "Prueba111", 12000,
-////                15000, 2,1));
-//        mostrarInfo();
+    public void onDestroy() {
+        super.onDestroy();
+        referenciasAComprar.clear();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mostrarInfo();
         btnGuardar = (Button) getActivity().findViewById(R.id.bntGuardar);
         btnMostrar = (Button) getActivity().findViewById(R.id.bntMostrar);
         btnMostrar.setOnClickListener(new View.OnClickListener() {
@@ -84,20 +83,9 @@ public class Compras extends Fragment {
                 mostrarInfo();
             }
         });
-        try {
-            referencia = (Referencia) getArguments().getSerializable("referenciaAdd");
-
-            referenciasAComprar.add(referencia);
-            //     mostrarInfo();
-        } catch (Exception ex) {
-
-        }
-//        referenciasAComprar.add(new Referencia("12", "Prueba", "Prueba111", 12000,
-//                15000, 2,1));
-//        mostrarInfo();
     }
 
-    private void mostrarInfo() {
+    public void mostrarInfo() {
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.listaReferenciasSeleccionadas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -111,7 +99,7 @@ public class Compras extends Fragment {
                 public void onItemSelected(Referencia referenciaFrag) {
 
                 }
-            }, false);
+            }, false, true);
             recyclerView.setAdapter(adapter);
             progressDialog.dismiss();
 

@@ -28,15 +28,17 @@ public class ReferenciasAdapter extends RecyclerView.Adapter<ReferenciasAdapter.
     private Context context;
     private ArrayList<Referencia> referencias;
     private IData data;
-    private boolean seleccion;
+    private boolean seleccion, quitarEditar;
 
 
-    public ReferenciasAdapter(Context context, ArrayList<Referencia> referencias, IData data, Boolean seleccion) {
+    public ReferenciasAdapter(Context context, ArrayList<Referencia> referencias, IData data, Boolean seleccion, Boolean quitarEditar) {
         this.context = context;
         this.referencias = referencias;
         this.data = data;
-         this.seleccion = seleccion;
+        this.seleccion = seleccion;
+        this.quitarEditar = quitarEditar;
     }
+
 
     @Override
     public MyvistaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -80,7 +82,8 @@ public class ReferenciasAdapter extends RecyclerView.Adapter<ReferenciasAdapter.
     }
 
     public class MyvistaHolder extends RecyclerView.ViewHolder {
-        TextView tNombre, tDescripcion, tPrecioCompra, tPrecioCompraLabel, tPrecioVenta, tPrecioVentaLabel, tCantidadDisponible;
+        TextView tNombre, tDescripcion, tPrecioCompra, tPrecioCompraLabel, tPrecioVenta, tPrecioVentaLabel,
+                tCantidadAPedir, tCantidadDisponible;
         EditText EdtCantidadAPedir;
         FloatingActionButton fltEdit, fltSeleccionar;
 
@@ -95,21 +98,22 @@ public class ReferenciasAdapter extends RecyclerView.Adapter<ReferenciasAdapter.
             tPrecioVenta = (TextView) itemView.findViewById(R.id.LblPrecioVentaData);
             tPrecioVentaLabel = (TextView) itemView.findViewById(R.id.LblPrecioVenta);
             tCantidadDisponible = (TextView) itemView.findViewById(R.id.LblCantidadDisponibleData);
+            tCantidadAPedir = (TextView) itemView.findViewById(R.id.LblCantidadAPedir);
             EdtCantidadAPedir = (EditText) itemView.findViewById(R.id.EdtCantidadAPedir);
             fltEdit = (FloatingActionButton) itemView.findViewById(R.id.fltAditar);
             fltSeleccionar = (FloatingActionButton) itemView.findViewById(R.id.fltSeleccionar);
 
-            if (seleccion)
-            {
+            if (seleccion) {
                 tPrecioCompra.setVisibility(View.GONE);
                 tPrecioCompraLabel.setVisibility(View.GONE);
                 fltEdit.setVisibility(View.GONE);
-            }
-            else
-            {
+            } else {
                 fltSeleccionar.setVisibility(View.GONE);
-                EdtCantidadAPedir.setVisibility(View.GONE);
+                EdtCantidadAPedir.setEnabled(false);
             }
+
+            if (quitarEditar)
+                fltEdit.setVisibility(View.GONE);
         }
     }
 }
