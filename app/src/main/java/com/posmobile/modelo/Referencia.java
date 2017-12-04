@@ -15,6 +15,7 @@ public class Referencia implements Serializable {
     private double precioVenta;
     private double precioCompra;
     private double cantidadDisponible;
+    private double cantidadAPedir;
 
     public Referencia() {
 
@@ -27,6 +28,17 @@ public class Referencia implements Serializable {
         this.setPrecioCompra(precioCompra);
         this.setPrecioVenta(precioVenta);
         this.setCantidadDisponible(cantidadDisponible);
+    }
+
+    public Referencia(String id, String nombre, String descripcion, double precioCompra,
+                      double precioVenta, double cantidadDisponible, double cantidadAPedir) {
+        this.setId(id);
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
+        this.setPrecioCompra(precioCompra);
+        this.setPrecioVenta(precioVenta);
+        this.setCantidadDisponible(cantidadDisponible);
+        this.setCantidadAPedir(cantidadAPedir);
     }
 
     public String getNombre() {
@@ -75,5 +87,13 @@ public class Referencia implements Serializable {
 
     public void setCantidadDisponible(double cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
+    }
+
+    public double getCantidadAPedir() {
+        return cantidadAPedir;
+    }
+
+    public void setCantidadAPedir(double cantidadAPedir) {
+        this.cantidadAPedir = cantidadAPedir;
     }
 }

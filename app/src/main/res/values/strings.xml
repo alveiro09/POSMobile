@@ -49,4 +49,6 @@
     <string name="NombreAcreedor">Nombre Acreedor</string>
     <string name="NombreCliente">Nombre Cliente</string>
     <string name="Guardar">Guardar</string>
+    <string name="title_fragment_compras">Compras</string>
+    <string name="title_activity_compras_tabs">ComprasTabs</string>
 </resources>

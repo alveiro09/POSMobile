@@ -1,15 +1,17 @@
 package com.posmobile;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -26,7 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Referencias extends AppCompatActivity {
+public class SeleccionProducto extends Fragment {
 
     private static final String url = "http://poswebapi.azurewebsites.net/api/Producto";
     private RecyclerView recyclerView;
@@ -35,43 +37,37 @@ public class Referencias extends AppCompatActivity {
     ProgressDialog progressDialog;
     RequestQueue requestQueue;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_referencias);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CrearReferencias.class);
-                startActivity(intent);
-            }
-        });
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        return inflater.inflate(R.layout.activity_seleccion_producto, container, false);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        requestQueue = Volley.newRequestQueue(getContext());
         mostrarInfo();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
 
     private void mostrarInfo() {
 
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Cargando datos...");
         progressDialog.show();
-        recyclerView = (RecyclerView) findViewById(R.id.listaReferencias);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = (RecyclerView) getActivity().findViewById(R.id.listaReferencias);
         recyclerView.setHasFixedSize(true);
-        adapter = new ReferenciasAdapter(this, Referenciaservicio, new IData() {
-            @Override
-            public void onItemSelected(Referencia referenciaFrag) {
-
-            }
-        },false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ReferenciasAdapter(getContext(), Referenciaservicio, data, true);
         recyclerView.setAdapter(adapter);
 
         JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
@@ -90,7 +86,7 @@ public class Referencias extends AppCompatActivity {
                         Referenciaservicio.add(new Referencia(id, nombre, descripcion, precioCompra, precioVenta, cantidadDisponible));
                     } catch (JSONException e) {
                         progressDialog.dismiss();
-                        Toast.makeText(Referencias.this, "" + e, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "" + e, Toast.LENGTH_LONG).show();
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -107,4 +103,18 @@ public class Referencias extends AppCompatActivity {
 
     }
 
+    IData data = new IData() {
+        @Override
+        public void onItemSelected(Referencia referenciaFrag) {
+            Compras compras = new Compras();
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("referenciaAdd", referenciaFrag);
+            compras.setArguments(bundle);
+
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.listaReferenciasSeleccionadas, compras).commit();
+        }
+    };
 }

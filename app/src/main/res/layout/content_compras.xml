@@ -63,10 +63,9 @@
                 android:layout_below="@+id/txtNombreAcreedor">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/listaReferencias"
+                    android:id="@+id/listaReferenciasSeleccionadas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblTitulo"
                     android:layout_margin="@dimen/StdMargin"
                     android:layout_marginBottom="@dimen/StdMaxMargin" />
 

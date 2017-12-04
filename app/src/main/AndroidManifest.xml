@@ -2,15 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.posmobile">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".MyApplication">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -67,7 +67,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AcercaDe"
-            android:label="@string/title_activity_acerca_de"
+            android:label="@string/title_activity_acerca_de" />
+        <activity
+            android:name=".ComprasTabs"
+            android:label="@string/title_activity_compras_tabs"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
