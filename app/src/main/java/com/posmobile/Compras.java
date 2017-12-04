@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -42,6 +43,8 @@ public class Compras extends Fragment {
     private RecyclerView recyclerView;
     private ReferenciasAdapter adapter;
 
+    private Button btnGuardar, btnMostrar;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +54,36 @@ public class Compras extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+//        try {
+//            referencia = (Referencia) getArguments().getSerializable("referenciaAdd");
+//
+//            referenciasAComprar.add(referencia);
+//            //     mostrarInfo();
+//        } catch (Exception ex) {
+//
+//        }
+////        referenciasAComprar.add(new Referencia("12", "Prueba", "Prueba111", 12000,
+////                15000, 2,1));
+//        mostrarInfo();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        btnGuardar = (Button) getActivity().findViewById(R.id.bntGuardar);
+        btnMostrar = (Button) getActivity().findViewById(R.id.bntMostrar);
+        btnMostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarInfo();
+            }
+        });
         try {
             referencia = (Referencia) getArguments().getSerializable("referenciaAdd");
 
@@ -59,29 +92,29 @@ public class Compras extends Fragment {
         } catch (Exception ex) {
 
         }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+//        referenciasAComprar.add(new Referencia("12", "Prueba", "Prueba111", 12000,
+//                15000, 2,1));
+//        mostrarInfo();
     }
 
     private void mostrarInfo() {
-
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Actualizando datos...");
-        progressDialog.show();
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.listaReferenciasSeleccionadas);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ReferenciasAdapter(getContext(), referenciasAComprar, new IData() {
-            @Override
-            public void onItemSelected(Referencia referenciaFrag) {
+        recyclerView.setHasFixedSize(true);
+        if ((referenciasAComprar != null) && (referenciasAComprar.size() > 0)) {
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("Actualizando datos...");
+            progressDialog.show();
 
-            }
-        }, false);
-        recyclerView.setAdapter(adapter);
+            adapter = new ReferenciasAdapter(getContext(), referenciasAComprar, new IData() {
+                @Override
+                public void onItemSelected(Referencia referenciaFrag) {
 
+                }
+            }, false);
+            recyclerView.setAdapter(adapter);
+            progressDialog.dismiss();
 
+        }
     }
 }

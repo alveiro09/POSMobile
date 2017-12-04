@@ -78,6 +78,12 @@
                 android:layout_centerHorizontal="true">
 
                 <Button
+                    android:id="@+id/bntMostrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mostrar"/>
+
+                <Button
                     android:id="@+id/bntGuardar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

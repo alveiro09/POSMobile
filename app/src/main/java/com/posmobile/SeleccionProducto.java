@@ -114,7 +114,7 @@ public class SeleccionProducto extends Fragment {
 
             FragmentManager manager = getFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.listaReferenciasSeleccionadas, compras).commit();
+            transaction.replace(R.id.bntMostrar, compras).commit();
         }
     };
 }
