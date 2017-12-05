@@ -30,6 +30,10 @@ public class Transaccion {
         this.setDescuento(descuento);
     }
 
+    public Transaccion() {
+
+    }
+
     public String getId() {
         return id;
     }
