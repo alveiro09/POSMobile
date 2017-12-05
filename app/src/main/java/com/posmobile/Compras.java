@@ -1,8 +1,10 @@
 package com.posmobile;
 
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -86,6 +88,7 @@ public class Compras extends Fragment {
         super.onStart();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -113,6 +116,7 @@ public class Compras extends Fragment {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void mostrarInfo() {
         recyclerView = (RecyclerView) getActivity().findViewById(R.id.listaReferenciasSeleccionadas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -172,7 +176,7 @@ public class Compras extends Fragment {
         Map<String, String> params = new HashMap<String, String>();
 
         params.put("idTransaccion", transaccion.getId());
-        params.put("TipoTransaccion", transaccion.getTipoTransaccion().toString());
+        params.put("TipoTransaccion", String.valueOf(transaccion.getTipoTransaccion().ordinal()));
         params.put("Neto", Double.toString(transaccion.getNeto()));
         params.put("Bruto", Double.toString(transaccion.getBruto()));
         params.put("Descuento", Double.toString(transaccion.getDescuento()));

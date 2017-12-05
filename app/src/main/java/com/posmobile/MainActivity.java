@@ -81,12 +81,12 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        //if (item.getItemId() == R.id.nav_iniciarSesion)
+        if (item.getItemId() == R.id.nav_iniciarSesion)
             IniciarActividad(IniciarSesion.class);
-       // else {
-        //    if (application == null)
-         //       application = (MyApplication) getApplication();
-        //    if ((application != null) && (application.getUsuarioActual() != null)) {
+        else {
+            if (application == null)
+                application = (MyApplication) getApplication();
+            if ((application != null) && (application.getUsuarioActual() != null)) {
                 switch (item.getItemId()) {
                     case R.id.nav_cerrarSesion:
                         IniciarActividad(CerrarSesion.class);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity
                         IniciarActividad(ComprasTabs.class);
                         break;
                     case R.id.nav_venta:
-                        IniciarActividad(Ventas.class);
+                        IniciarActividad(VentasTabs.class);
                         break;
                     case R.id.nav_referencia:
                         IniciarActividad(Referencias.class);
@@ -123,10 +123,10 @@ public class MainActivity extends AppCompatActivity
                     default:
                         break;
                 }
-           // } else {
-           //     Toast.makeText(MainActivity.this, "Por favor inicie sesión para acceder a esta opción", Toast.LENGTH_LONG).show();
-           // }
-       // }
+            } else {
+                Toast.makeText(MainActivity.this, "Por favor inicie sesión para acceder a esta opción", Toast.LENGTH_LONG).show();
+            }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

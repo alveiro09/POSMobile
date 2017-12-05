@@ -45,10 +45,11 @@
     <string name="Usuario">Usuario</string>
     <string name="IniciarSesion">Iniciar Sesión</string>
     <string name="Nit">Nit</string>
-    <string name="Cedula">Cedula</string>
+    <string name="Cedula">Cédula</string>
     <string name="NombreAcreedor">Nombre Acreedor</string>
     <string name="NombreCliente">Nombre Cliente</string>
     <string name="Guardar">Guardar</string>
     <string name="title_fragment_compras">Compras</string>
-    <string name="title_activity_compras_tabs">ComprasTabs</string>
+    <string name="title_activity_compras_tabs">Compras</string>
+    <string name="title_activity_ventas_tabs">Ventas</string>
 </resources>

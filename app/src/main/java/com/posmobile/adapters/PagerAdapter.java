@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.posmobile.Compras;
+import com.posmobile.EnumTipoTransaccion;
 import com.posmobile.SeleccionProducto;
 
 /**

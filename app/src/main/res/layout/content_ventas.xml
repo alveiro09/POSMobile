@@ -2,8 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/viewVentas"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/StdMargin"
+    android:scrollbars="vertical|horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.posmobile.Ventas"
     tools:showIn="@layout/activity_ventas">
@@ -13,82 +16,46 @@
         android:layout_height="wrap_content"
         android:text="@string/title_activity_ventas"
         android:textAlignment="center"
-        android:textSize="@dimen/SizeTitle"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:textSize="@dimen/SizeTitle" />
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="471dp"
-        android:layout_margin="24dp"
-        tools:layout_editor_absoluteY="32dp"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/FieldsMargin"
+        android:scrollbars="vertical|horizontal">
 
-        <RelativeLayout
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listaReferenciasSeleccionadas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/FieldsMargin">
+            android:layout_above="@+id/buttons"
+            android:layout_margin="@dimen/StdMargin"
+            android:layout_marginBottom="@dimen/StdMaxMargin" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/txtCedula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/edtNit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/Nit" />
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
 
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/txtNombreAcreedor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtCedula">
-
-                <EditText
-                    android:id="@+id/edtNombreAcreedor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/NombreAcreedor"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <LinearLayout
+            <Button
+                android:id="@+id/bntMostrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/txtNombreAcreedor">
+                android:text="Mostrar" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/listaReferencias"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblTitulo"
-                    android:layout_margin="@dimen/StdMargin"
-                    android:layout_marginBottom="@dimen/StdMaxMargin" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
+                android:id="@+id/bntGuardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true">
+                android:text="@string/Guardar" />
 
-                <Button
-                    android:id="@+id/bntGuardar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Guardar"/>
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

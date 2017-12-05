@@ -25,7 +25,6 @@ public class ComprasTabs extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Compra"));
         tabLayout.addTab(tabLayout.newTab().setText("Selección"));
