@@ -10,6 +10,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Referencia implements Serializable {
     private String Id;
+    private String IdProducto;
     private String nombre;
     private String descripcion;
     private double precioVenta;
@@ -21,8 +22,9 @@ public class Referencia implements Serializable {
 
     }
 
-    public Referencia(String id, String nombre, String descripcion, double precioCompra, double precioVenta, double cantidadDisponible) {
+    public Referencia(String id, String idProducto, String nombre, String descripcion, double precioCompra, double precioVenta, double cantidadDisponible) {
         this.setId(id);
+        this.setIdProducto(idProducto);
         this.setNombre(nombre);
         this.setDescripcion(descripcion);
         this.setPrecioCompra(precioCompra);
@@ -95,5 +97,13 @@ public class Referencia implements Serializable {
 
     public void setCantidadAPedir(double cantidadAPedir) {
         this.cantidadAPedir = cantidadAPedir;
+    }
+
+    public String getIdProducto() {
+        return IdProducto;
+    }
+
+    public void setIdProducto(String idProducto) {
+        IdProducto = idProducto;
     }
 }

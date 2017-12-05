@@ -26,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ReporteCompras extends AppCompatActivity {
-    private static final String url = "http://192.168.1.14:8080/tortas/consulta.php";
+    private static final String url = "http://poswebapi.azurewebsites.net/api/Transaccion";
     private RecyclerView recyclerView;
     private TransaccionesAdapter adapter;
     private ArrayList<Transaccion> transaccionServicio = new ArrayList<>();
@@ -67,7 +67,7 @@ public class ReporteCompras extends AppCompatActivity {
                             double neto = objeto.getDouble("Neto");
                             double bruto = objeto.getDouble("Bruto");
                             double descuento = objeto.getDouble("Descuento");
-                            String usuario = objeto.getString("Usuario");
+                            String usuario = objeto.getString("IdUsuario");
                             transaccionServicio.add(new Transaccion(id, usuario, fecha, tipoTransaccion, neto, bruto, descuento));
                         }
                     } catch (JSONException e) {

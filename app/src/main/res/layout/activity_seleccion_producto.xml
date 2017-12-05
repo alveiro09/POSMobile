@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.posmobile.SeleccionProducto"
-    android:id="@+id/viewSeleccion">
+    android:id="@+id/viewSeleccion"
+    android:layout_margin="@dimen/StdMargin">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listaReferencias"
@@ -14,6 +15,7 @@
         android:layout_below="@+id/lblTitulo"
         android:layout_margin="@dimen/StdMargin"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="8dp"
+    />
 
 </android.support.constraint.ConstraintLayout>

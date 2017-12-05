@@ -56,7 +56,7 @@ public class TransaccionesAdapter extends RecyclerView.Adapter<TransaccionesAdap
             tBruto = (TextView) itemView.findViewById(R.id.LblBrutoData);
             tNeto = (TextView) itemView.findViewById(R.id.LblNetoData);
             tDescuento = (TextView) itemView.findViewById(R.id.LblDescuentoData);
-            tUsuario = (TextView) itemView.findViewById(R.id.LblNombreUsuarioData);
+            tUsuario = (TextView) itemView.findViewById(R.id.LblUsuarioData);
         }
     }
 }

@@ -80,14 +80,15 @@ public class Referencias extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject objeto = response.getJSONObject(i);
-                        String id = objeto.getString("IdProducto");
+                        String id = objeto.getString("Id");
+                        String idProducto = objeto.getString("IdProducto");
                         String nombre = objeto.getString("Nombre");
                         String descripcion = objeto.getString("Descripcion");
                         double precioCompra = objeto.getDouble("PrecioCompra");
                         double precioVenta = objeto.getDouble("PrecioVenta");
                         double cantidadDisponible = objeto.getDouble("CantidadDisponible");
 
-                        Referenciaservicio.add(new Referencia(id, nombre, descripcion, precioCompra, precioVenta, cantidadDisponible));
+                        Referenciaservicio.add(new Referencia(id, idProducto, nombre, descripcion, precioCompra, precioVenta, cantidadDisponible));
                     } catch (JSONException e) {
                         progressDialog.dismiss();
                         Toast.makeText(Referencias.this, "" + e, Toast.LENGTH_LONG).show();

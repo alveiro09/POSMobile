@@ -53,7 +53,7 @@ public class ReferenciasAdapter extends RecyclerView.Adapter<ReferenciasAdapter.
         holder.tPrecioCompra.setText(String.valueOf(referencias.get(position).getPrecioCompra()));
         holder.tPrecioVenta.setText(String.valueOf(referencias.get(position).getPrecioVenta()));
         holder.tCantidadDisponible.setText(String.valueOf(referencias.get(position).getCantidadDisponible()));
-
+        holder.EdtCantidadAPedir.setText(String.valueOf(referencias.get(position).getCantidadAPedir()));
         holder.fltEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -49,6 +49,7 @@ import java.util.UUID;
 public class Compras extends Fragment {
     static ArrayList<Referencia> referenciasAComprar = new ArrayList<>();
     private static final String url = "http://poswebapi.azurewebsites.net/api/Transaccion";
+    private static final String urlRef = "http://poswebapi.azurewebsites.net/api/Producto";
     RequestQueue queue;
     MyApplication application;
     ProgressDialog progressDialog;
@@ -100,7 +101,14 @@ public class Compras extends Fragment {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InsertarActualizarReferencia(true);
+                InsertarActualizarCompra(true);
+                try {
+                    Thread.sleep(30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                RecorrerDatalles();
+                referenciasAComprar.clear();
             }
         });
     }
@@ -143,7 +151,7 @@ public class Compras extends Fragment {
         return descuento;
     }
 
-    private void InsertarActualizarReferencia(boolean insertar) {
+    private void InsertarActualizarCompra(boolean insertar) {
 
         Transaccion transaccion = new Transaccion();
         transaccion.setBruto(CalcularBruto());
@@ -186,9 +194,86 @@ public class Compras extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
                 if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
-                    Toast.makeText(getContext(), "Referencia Creada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Compra Creada", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+
+        };
+        jsonObjReq.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+        queue.add(jsonObjReq);
+
+    }
+
+    private void RecorrerDatalles() {
+        for (Referencia ref : referenciasAComprar) {
+            ref.setCantidadDisponible(ref.getCantidadDisponible() + ref.getCantidadAPedir());
+            InsertarActualizarReferencia(ref, false);
+        }
+    }
+
+
+    private void InsertarActualizarReferencia(final Referencia referencia, boolean insertar) {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Guardando información...");
+        progressDialog.show();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id", referencia.getId());
+        params.put("idProducto", referencia.getIdProducto());
+        params.put("nombre", referencia.getNombre());
+        params.put("descripcion", referencia.getDescripcion());
+        params.put("cantidadDisponible", Double.toString(referencia.getCantidadDisponible()));
+        params.put("precioVenta", Double.toString(referencia.getPrecioVenta()));
+        params.put("precioCompra", Double.toString(referencia.getPrecioCompra()));
+        params.put("cantidadDisponible",  Double.toString(referencia.getCantidadDisponible()));
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
+                urlRef+"/"+referencia.getId(), new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getContext(), "Referencia Actualizada", Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                //if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
+                    Toast.makeText(getContext(), "Referencia Actualizada", Toast.LENGTH_LONG).show();
+//                else
+//                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 

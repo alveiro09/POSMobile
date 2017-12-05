@@ -113,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LblCantidadAPedir"
-     android:inputType="number"
+        android:inputType="number"
         android:textColor="@color/colorPrimary" />
 
     <android.support.design.widget.FloatingActionButton
@@ -129,14 +129,17 @@
         android:id="@+id/fltSeleccionar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/StdMargin"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorPrimaryDark" />
+        android:layout_height="0.1px"
+        android:background="@color/colorPrimaryDark"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
