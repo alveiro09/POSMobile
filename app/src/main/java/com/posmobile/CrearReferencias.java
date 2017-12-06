@@ -109,7 +109,7 @@ public class CrearReferencias extends AppCompatActivity {
     }
 
     private void LlenarReferenciaEdit(Referencia referenciaEdit) {
-        edtCodigoReferencia.setText(referenciaEdit.getId());
+        edtCodigoReferencia.setText(referenciaEdit.getIdProducto());
         edtNombreReferencia.setText(referenciaEdit.getNombre());
         edtDescripcionReferencia.setText(referenciaEdit.getDescripcion());
         edtPrecioCompra.setText(Double.toString(referenciaEdit.getPrecioCompra()));
@@ -122,7 +122,7 @@ public class CrearReferencias extends AppCompatActivity {
         progressDialog.show();
         Map<String, String> params = new HashMap<String, String>();
 
-        params.put("idProducto", referencia.getId());
+        params.put("idProducto", referencia.getIdProducto());
         params.put("nombre", referencia.getNombre());
         params.put("descripcion", referencia.getDescripcion());
         params.put("cantidadDisponible", Double.toString(referencia.getCantidadDisponible()));
@@ -132,7 +132,7 @@ public class CrearReferencias extends AppCompatActivity {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(insertar ? Request.Method.POST : Request.Method.PUT,
-                url, new JSONObject(params),
+                insertar ? url : url+"/"+referencia.getId(), new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -145,10 +145,10 @@ public class CrearReferencias extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
+               // if (error.getCause().toString().equalsIgnoreCase("org.json.JSONException: Value false of type java.lang.String cannot be converted to JSONObject"))
                     Toast.makeText(CrearReferencias.this, "Referencia Creada", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(CrearReferencias.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                //else
+                 //   Toast.makeText(CrearReferencias.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
 

@@ -66,6 +66,7 @@ public class ReferenciasAdapter extends RecyclerView.Adapter<ReferenciasAdapter.
             @Override
             public void onClick(View view) {
                 AdiccionarReferencia(referencias.get(pos), holder.EdtCantidadAPedir.getText().toString());
+                holder.EdtCantidadAPedir.setText("");
             }
         });
     }
